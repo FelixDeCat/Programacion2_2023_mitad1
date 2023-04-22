@@ -12,8 +12,10 @@ namespace Programacion2.Maniana
         //sigue siendo privado pero lo veo en el editor
         [SerializeField] float speed = 100;
 
-        public List<int> keys = new List<int>();
+        CharView view;
 
+        #region Keys
+        public List<int> keys = new List<int>();
         internal bool HasKey(int code)
         {
             
@@ -23,10 +25,12 @@ namespace Programacion2.Maniana
         {
             keys.Add(key);
         }
+        #endregion
 
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
+            view = GetComponent<CharView>();
         }
 
         void Start()
@@ -45,6 +49,11 @@ namespace Programacion2.Maniana
             {
                 rb.AddForce(new Vector3(0,5,0), ForceMode.VelocityChange);
             }
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                view.Grab();
+            }
         }
 
         float yfall;
@@ -52,7 +61,10 @@ namespace Programacion2.Maniana
         {
             yfall = rb.velocity.y;
             Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            
+
+            view.Vertical(Input.GetAxis("Vertical"));
+            view.Horizontal(Input.GetAxis("Horizontal"));
+
             //          vector * num  * normalizador de frames
             rb.velocity = move * speed * Time.deltaTime; //producto escalar
 

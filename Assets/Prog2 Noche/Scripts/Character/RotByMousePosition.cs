@@ -30,6 +30,9 @@ namespace Programacion2.Noche
             //le digo que apunte a ese punto de colision
             //  root.forward = point;
 
+            Vector3 dir = point - root.position;
+            dir.y = 0;
+
             root.forward = Vector3.Slerp(root.forward, point, Time.deltaTime * lookSpeed);
 
         }

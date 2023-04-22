@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Button : MonoBehaviour
+namespace Programacion2.Noche
 {
-    public Animator anim;
-
-    public void EV_ANIM_OpenDoor()
+    public class Button : MonoBehaviour
     {
-        anim.Play("Open");
-    }
+        public Animator anim;
 
-    public void EV_ANIM_CloseDoor()
-    {
-        anim.Play("Close");
+        public void EV_ANIM_OpenDoor()
+        {
+            anim.Play("Open");
+        }
+
+        public void EV_ANIM_CloseDoor()
+        {
+            anim.Play("Close");
+        }
     }
 }
+
