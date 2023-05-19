@@ -28,6 +28,23 @@ namespace Programacion2.Maniana
         {
             myAnim.SetFloat("vertical", v);
         }
+        public void BeginAttack()
+        {
+            myAnim.SetBool("beginAttack", true);
+        }
+        public void EndAttack()
+        {
+            myAnim.SetBool("beginAttack", false);
+        }
+        public void Anim_Jump()
+        {
+            myAnim.SetTrigger("jump");
+        }
+
+        public void Anim_Die()
+        {
+            myAnim.SetBool("Die", true);
+        }
 
 
         public void Grab()

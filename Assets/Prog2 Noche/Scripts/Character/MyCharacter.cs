@@ -9,9 +9,9 @@ namespace Programacion2.Noche
 
         [SerializeField] private Rigidbody myRig;
         [SerializeField] private float speed = 200;
+        [SerializeField] float height;
 
         float fallY = 0;
-        [SerializeField] float jumpforce = 20f;
 
         MyChar_View view;
 
@@ -27,13 +27,23 @@ namespace Programacion2.Noche
         {
             if (Input.GetButtonDown("Jump") && ground.IsGrounded)
             {
-                myRig.AddForce(Vector3.up * jumpforce, ForceMode.VelocityChange); //1 solo frame
+                view.Jump();
             }
 
             if (Input.GetButtonDown("Fire2"))
             {
                 view.Kick();
             }
+        }
+
+        public void RealJump()
+        {
+            print("JUMP");
+            float yJump = Mathf.Sqrt(height * -2 * Physics.gravity.y);
+            myRig.velocity = new Vector3(myRig.velocity.x, yJump,myRig.velocity.z);
+            myRig.AddForce(Vector3.up * Physics.gravity.y, ForceMode.Acceleration);
+            //addForce(Vector3.up * jumpforce, ForceMode.VelocityChange); //1 solo frame
+        
         }
 
         void FixedUpdate()

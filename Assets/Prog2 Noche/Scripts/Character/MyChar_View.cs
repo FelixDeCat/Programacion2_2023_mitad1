@@ -22,6 +22,14 @@ public class MyChar_View : MonoBehaviour
     {
         myAnim.SetFloat("vertical", vert);
     }
+    public void Jump()
+    {
+        myAnim.SetTrigger("jump");
+    }
+    public void Attack(bool val)
+    {
+        myAnim.SetBool("isAttack", val);
+    }
 
     public void Kick()
     {

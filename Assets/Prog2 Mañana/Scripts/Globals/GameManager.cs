@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Programacion2.Maniana
 {
@@ -39,6 +40,11 @@ namespace Programacion2.Maniana
             {
                 return instance.character.transform;
             }
+        }
+
+        public static void ResetGame()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
