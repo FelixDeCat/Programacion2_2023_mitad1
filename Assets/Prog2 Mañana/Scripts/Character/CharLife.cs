@@ -3,56 +3,60 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CharLife : MonoBehaviour
+namespace Programacion2.Maniana
 {
-   
-    [SerializeField] int MaxLife = 100;
-    [SerializeField] UnityEvent EV_OnDie;
-    int life;
-    public int Life
+    public class CharLife : MonoBehaviour
     {
-        get
-        {
-            return life;
-        }
 
-        set
+        [SerializeField] int MaxLife = 100;
+        [SerializeField] UnityEvent EV_OnDie;
+        int life;
+        public int Life
         {
-            life = value;
-            if (value <= 0)
+            get
             {
-                life = 0;
-                EV_OnDie.Invoke();
-            }
-            if (value > MaxLife)
-            {
-                life = MaxLife;
+                return life;
             }
 
-            Debug.Log((float)life / MaxLife);
+            set
+            {
+                life = value;
+                if (value <= 0)
+                {
+                    life = 0;
+                    EV_OnDie.Invoke();
+                }
+                if (value > MaxLife)
+                {
+                    life = MaxLife;
+                }
 
-            UI_LifeBar.instance.RefreshLifeBar((float)life / MaxLife);
+                Debug.Log((float)life / MaxLife);
+
+                UI_LifeBar.instance.RefreshLifeBar((float)life / MaxLife);
+            }
+        }
+
+
+        private void Start()
+        {
+            Life = MaxLife;
+
+        }
+
+        public void Resurrect()
+        {
+            Life = MaxLife;
+        }
+        public void TakeDamage(int dmg)
+        {
+            Debug.Log("Take damage");
+            Life -= dmg;
+        }
+        public void Heal(int heal)
+        {
+            Life += heal;
         }
     }
 
-
-    private void Start()
-    {
-        Life = MaxLife;
-
-    }
-
-    public void Resurrect()
-    {
-        Life = MaxLife;
-    }
-    public void TakeDamage(int dmg)
-    {
-        Debug.Log("Take damage");
-        Life -= dmg;
-    }
-    public void Heal(int heal)
-    {
-        Life += heal;
-    }
 }

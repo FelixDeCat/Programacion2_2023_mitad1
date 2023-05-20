@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_LifeBar : MonoBehaviour
+namespace Programacion2.Maniana
 {
-    public static UI_LifeBar instance;
-    [SerializeField] Image img;
-    private void Awake()
+    public class UI_LifeBar : MonoBehaviour
     {
-        instance = this;
-    }
+        public static UI_LifeBar instance;
+        [SerializeField] Image img;
+        private void Awake()
+        {
+            instance = this;
+        }
 
-    public void RefreshLifeBar(float _amount)
-    {
-        img.fillAmount = _amount;
+        public void RefreshLifeBar(float _amount)
+        {
+            img.fillAmount = _amount;
+        }
     }
 }
+
